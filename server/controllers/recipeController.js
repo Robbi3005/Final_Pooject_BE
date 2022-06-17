@@ -186,7 +186,7 @@ exports.submit = async (req, res) => {
 }
 
 /*
-* GET /submit
+* POST /submit
 * Post Submit
 */
 
@@ -240,20 +240,28 @@ exports.submitPost = async (req, res) => {
 
 }
 
-// async function deleteRecipe() {
+/*
+* DELETE /submit
+* DELETE Submit
+*/
 
-//     try {
+exports.deleteRecipe = async (req, res) => {
 
-//         const res = await Recipe.deleteOne({ name: 'New Chocolate Updated' });
+    try {
 
-//     } catch (error) {
+        const infoErrorObject = req.flash('infoError');
+        const infoSubmitObject = req.flash('infoSubmit');
 
-//         res.status(500).send({ message: error.message || 'An error occurred while retrieving the exploreCategories.' });
-//     }
-// }
+        const recipe = await Recipe.deleteOne({ _id: req.params.id });
+        // res.render('recipe', { title: 'Cooking Blog - Delete', recipe:null });
 
-// deleteRecipe()
+    } catch (error) {
 
+        return res.status(500).send({ message: error.message || 'An error occurred while retrieving the exploreCategories.' });
+    }
+
+    return res.json({status:'success delete'});
+}
 
 // async function updateRecipe() {
 

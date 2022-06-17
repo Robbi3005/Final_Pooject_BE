@@ -28,6 +28,7 @@ router.get('/random', recipeController.random);
 
 router.get('/submit', recipeController.submit);
 router.post('/submit', recipeController.submitPost);
+router.delete('/recipe/:id', recipeController.deleteRecipe);
 
 //-----------------------------------------------------------------
 
